@@ -27,14 +27,14 @@ var bio = {
     twitter: "github.com/mingwb",
     location: "Shanghai, China"
   },
-  welcomeMessage: "Make something people want",
+  welcomeMessage: "Make Something People Want",
   skills: ["ruby", "javascript", "golang", "css"],
   biopic: "images/fry.jpg",
   display: function() {
     var formattedName = HTMLheaderName.replace("%data%", bio.name);
     var formatedRole = HTMLheaderRole.replace("%data%", bio.role);
-    $("#main").prepend(formatedRole);
-    $("#main").prepend(formattedName);
+    $("#header").prepend(formatedRole);
+    $("#header").prepend(formattedName);
 
     var formattedMobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
     var formattedEmail = HTMLemail.replace("%data%", bio.contacts.email);
@@ -92,7 +92,25 @@ var education = {
       title: "MongoDB for developers",
       school: "Mongodb University",
       date: "2012",
-      url: "mongodb"
+      url: "https://university.mongodb.com/"
+    },
+    {
+      title: "Pattern-Oriented Software Architectures for Concurrent and Networked Software",
+      school: "Coursera",
+      date: "May 13, 2013",
+      url: "https://www.coursera.org/course/posasoftware"
+    },
+    {
+      title: "Functional Programming Principles in Scala",
+      school: "Coursera",
+      date: "June 03, 2013",
+      url: "https://www.coursera.org/course/progfun"
+    },
+    {
+      title: "Introducation to data science",
+      school: "Coursera",
+      date: "June 29, 2013",
+      url: "https://www.coursera.org/course/datasci"
     }
   ],
   display: function() {
@@ -170,10 +188,16 @@ var work = {
 var projects = {
   projects: [
     {
-      title: "some shit",
-      dates: "2011-10-13",
-      description: "some description",
-      images: "ah"
+      title: "Online voting system",
+      dates: "2013",
+      description: "This is my first web project",
+      images: ["http://loremflickr.com/320/240", "http://loremflickr.com/320/240"]
+    },
+    {
+      title: "Online game",
+      dates: "2015",
+      description: "This is my second project",
+      images: ["http://loremflickr.com/320/240", "http://loremflickr.com/320/240"]
     }
   ],
   display: function() {
@@ -183,7 +207,13 @@ var projects = {
       var formattedProjectTitle = HTMLprojectTitle.replace("%data%", p.title);
       var formattedProjectDates = HTMLprojectDates.replace("%data%", p.dates);
       var formattedDescription = HTMLprojectDescription.replace("%data%", p.description);
-      var formattedImage = HTMLprojectImage.replace("%data%", p.images);
+
+      var formattedImage = "";
+      p.images.forEach(function(image) {
+        console.log(image);
+        formattedImage = formattedImage + HTMLprojectImage.replace("%data%", image);
+      });
+
       projectEntry.append(formattedProjectTitle)
                   .append(formattedProjectDates)
                   .append(formattedDescription)
